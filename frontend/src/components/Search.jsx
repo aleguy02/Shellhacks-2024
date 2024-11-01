@@ -30,7 +30,6 @@ export default function Search() {
         setFail(true);
         throw new Error("failed.");
       }
-      console.log(JSON.parse(result.data.resources));
       setResources(JSON.parse(result.data.resources));
       setParagraph(result.data.response);
       setSuccess(true);
@@ -48,25 +47,19 @@ export default function Search() {
     }
   };
 
-  // next big task is probably to refactor this. Oh also, remove my useless comments
-  // here's what I have to do. I have to change it so that instead of "Find Me", it says "Gainesville". Then, clicking it will set
-  // the city to gainesville (I can implement FIU later). Instead of zip or coordinates or whatever, I will pass city name to the backend
   const handleFind = (schoolName) => {
+    // Reset states for a new query
+    // setFail(false);
+    // setSuccess(false);
     setKey(import.meta.env.VITE_GOOGLE_KEY);
     setLanguage("en");
 
     if (schoolName === "UF") {
-      const pos = {
-        lat: 29.648313,
-        lng: -82.334327,
-      };
+      const pos = {lat: 29.648313, lng: -82.334327,};
       setLocation(pos);
       setCity("Gainesville, Florida");
     } else if (schoolName === "FIU") {
-      const pos = {
-        lat: 25.7506301,
-        lng: -80.2604145,
-      };
+      const pos = {lat: 25.7506301, lng: -80.2604145,};
       setLocation(pos);
       setCity("Coral Gables, Florida");
     }   
@@ -172,7 +165,7 @@ export default function Search() {
               className="cursor-pointer mt-4 p-4 bg-gray-100 rounded-[20rem]"
             >
               <p className="text-center text-rose-400 text-popmed font-bold">
-                {bad}
+                {"Invalid input"}
               </p>
             </div>
           )}
